@@ -1,6 +1,6 @@
 #include <iostream>
 
-void	loud(char const*str)
+void	loud(char const* str)
 {
 	char    c;
 
