@@ -9,7 +9,7 @@ $(NAME): $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	
+	@echo "Nothing to clean. To remove executable, try 'make fclean'."
 
 fclean: clean
 	rm -f $(NAME)

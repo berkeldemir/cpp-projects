@@ -1,3 +1,15 @@
+/*
+ *  ____________/\\_______/\\\\\\_____  ==============================
+ *  __________/\\\_____/\\\///////\\\___
+ *   ________/\\\/\\\____\///______\//\\\__ File: ex01/Contact.hpp
+ *    ______/\\\/\\\______________/\\\/___   Created at: 2025-08-14 17:37
+ *     ____/\\\/__\/\\\___________/\\\//_____ Created by: Berk M. Eldemir
+ *      __/\\\\\\\\\\\\\\\_____/\\\//________  Creator Github: /berkeldemir
+ *       _\///////////\\\//____/\\\/___________ Last Mod: 2025-08-14 17:43
+ *        ___________\/\\\_____/\\\\\\\\\\\\\\\_
+ *         ___________\///_____\///////////////__  ===============================
+ */
+
 #include <iostream>
 
 #ifndef CONTACT_H
@@ -5,21 +17,21 @@
 
 class	Contact
 {
-	private:
+	private
 		std::string darkest_secret;
 	public:
 		std::string name;
 		std::string surname;
 		std::string nickname;
 		std::string phone_number;
-		void        set_darkest_secret(std::string input)
-    {
-      darkest_secret = input;
-    }
-    std::string get_darkest_secret()
-    {
-      return (darkest_secret);
-    }
+	void        set_darkest_secret(std::string input)
+	{
+		darkest_secret = input;
+	}
+	std::string get_darkest_secret()
+	{
+		return (darkest_secret);
+	}
 };
 
 #endif
