@@ -1,7 +1,7 @@
 NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = PhoneBook.cpp
+SRCS = PhoneBook.cpp Contact.cpp Main.cpp
 
 all: $(NAME)
 
@@ -11,7 +11,7 @@ $(NAME): $(SRCS)
 clean:
 	@echo "Nothing to clean. To remove executable, try 'make fclean'."
 
-fclean: clean
+fclean:
 	rm -f $(NAME)
 
 re: fclean all
