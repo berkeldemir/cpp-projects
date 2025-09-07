@@ -30,14 +30,25 @@ int main(void)
   	while (1)
 	{
 		getline(std::cin, input);
-		if (input == "ADD")
-			book.add();
+		if (std::cin.eof())
+		{
+			std::cout << "EXIT" << std::endl;
+			break ;
+		}
+		else if (input == "ADD")
+		{
+			if (!book.add())
+				break ;
+		}
 		else if (input == "SEARCH")
-			book.search();
+		{
+			if (!book.search())
+				break ;
+		}
 		else if (input == "EXIT")
-			break;
+			break ;
 		else if (!input[0])
-			continue;
+			continue ;
         else
             std::cout << "Please enter a valid command!" << std::endl;
 		std::cout << std::endl;

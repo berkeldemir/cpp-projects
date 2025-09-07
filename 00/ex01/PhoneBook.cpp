@@ -13,10 +13,22 @@
 
 #include "./PhoneBook.hpp"
 
-static void	get_value(std::string prompt, std::string *ptr)
+static bool	get_value(std::string prompt, std::string *ptr)
 {
-	std::cout << prompt << ":\t";
-	getline(std::cin, *ptr);
+	while (1)
+	{
+		std::cout << prompt << ":\t";
+		getline(std::cin, *ptr);
+		if (std::cin.eof())
+		{
+			std::cout << std::endl << "EXIT" << std::endl;
+			return false;
+		}
+		else if (ptr->empty())
+			std::cout << "A contact can't have empty fields, try again." << std::endl;
+		else
+			return (true);
+	}
 }
 
 static int	next_to_update()
@@ -60,27 +72,40 @@ PhoneBook::PhoneBook()
 	this->contact_count = 0;
 }
 
-void	PhoneBook::add()
+bool	PhoneBook::add()
 {
 	int			i;
 	std::string	buffer;
 
 	i = next_to_update();
-	get_value("First Name", &buffer);
-	contact_list[i].set_name(buffer);
-	get_value("Last Name", &buffer);
-	contact_list[i].set_surname(buffer);
-	get_value("Nickname", &buffer);
-	contact_list[i].set_nickname(buffer);
-	get_value("Phone Number", &buffer);
-	contact_list[i].set_phone_number(buffer);
-	get_value("Darkest Secret", &buffer);
-	contact_list[i].set_darkest_secret(buffer);
+	const char *fields[6] =
+	{
+		"First Name",
+		"Last Name",
+		"Nickname",
+		"Phone Number",
+		"Darkest Secret",
+		NULL
+	};
+	for (int j = 0; fields[j]; j++)
+	{
+		if (!get_value(fields[j], &buffer))
+			return (false);
+		switch (j)
+		{
+			case 0: contact_list[i].set_name(buffer); break ;
+			case 1: contact_list[i].set_surname(buffer); break ;
+			case 2: contact_list[i].set_nickname(buffer); break ;
+			case 3: contact_list[i].set_phone_number(buffer); break ;
+			case 4: contact_list[i].set_darkest_secret(buffer); break ;
+		}
+	}
 	if (contact_count < 8)
 		contact_count++;
+	return (true);
 }
 
-void	PhoneBook::search()
+bool	PhoneBook::search()
 {
 	int i;
 	int number;
@@ -91,7 +116,7 @@ void	PhoneBook::search()
 	{
 		std::cout << "No contact found yet." << std::endl;
 		std::cout << "To add new use: \'ADD\'" << std::endl;
-		return ;
+		return true;
 	}
 	std::cout << "+-+----------+----------+----------+\n";
 	while (++i < contact_count)
@@ -104,16 +129,21 @@ void	PhoneBook::search()
 	}
 	std::cout << "+-+----------+----------+----------+\n";
 	std::cout << "Please enter a number between 0-" << contact_count - 1 << ": ";
-	while (!(std::cin >> number) || number < 0 || number >= contact_count)
+	while (!(std::cin >> number) || number < 0 || number >= contact_count || std::cin.eof())
 	{
+		if (std::cin.eof())
+		{
+			std::cout << std::endl << "EXIT" << std::endl;
+			return false;
+		}
 		std::cout << "Please enter a number between 0-" << contact_count - 1 << ": ";
-		std::cin.clear(); // Removes error flag from std::cin, and makes it usable again.
-		std::cin.ignore(40, '\n'); // clear() makde std::cin usable, but the characters still there, this line is there to flush them out.
+		std::cin.clear();
+		std::cin.ignore(40, '\n');
 	}
 	std::cout << "First Name:\t" << contact_list[number].get_name() << std::endl;
 	std::cout << "Last Name:\t" << contact_list[number].get_surname() << std::endl;
 	std::cout << "Nickname:\t" << contact_list[number].get_nickname() << std::endl;
 	std::cout << "Phone Number:\t" << contact_list[number].get_phone_number() << std::endl;
 	std::cout << "Darkest Secret:\t" << contact_list[number].get_darkest_secret() << std::endl;
-	return ;
+	return true;
 }

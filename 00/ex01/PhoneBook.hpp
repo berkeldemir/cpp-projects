@@ -23,8 +23,8 @@ class PhoneBook
 		int		contact_count;
 	public:
 		PhoneBook();
-		void add();
-		void search();
+		bool add();
+		bool search();
 };
 
 #endif
