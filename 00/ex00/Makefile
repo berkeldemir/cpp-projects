@@ -1,6 +1,6 @@
 NAME = megaphone
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror
 SRCS = ./megaphone.cpp
 
 all: $(NAME)
@@ -9,9 +9,9 @@ $(NAME):
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	rm -f megaphone.o
+	@echo "Nothing to clean. To remove executable, try 'make fclean'."
 
-fclean: clean
+fclean: 
 	rm -f $(NAME)
 
 re: fclean all

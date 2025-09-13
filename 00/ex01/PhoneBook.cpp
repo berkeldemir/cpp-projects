@@ -53,16 +53,16 @@ static void	partly_print(std::string str)
 	if (len > 10)
 	{
 		while (++i < 9)
-		std::cout << str[i];
+			std::cout << str[i];
 		std::cout << ".";
 	}
 	else
 	{
 		while (++i < 10 - len)
-		std::cout << " ";
+			std::cout << " ";
 		i = -1;
 		while (str[++i])
-		std::cout << str[i];
+			std::cout << str[i];
 	}
 	std::cout << "|";
 }
