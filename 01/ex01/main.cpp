@@ -14,19 +14,16 @@
 
 int main(void)
 {
-	int			num_of_zombies = 5;
-	std::string	name_of_zombies = "deneme";
+	int			num_of_zombies = 12;
+	std::string	name_of_zombies = "TEST";
 
 	Zombie *zombies = zombieHorde(num_of_zombies, name_of_zombies);
-	std::cout << num_of_zombies << " zombies created named " << name_of_zombies << std::endl;
-	std::cout << "How many bytes for a zombie? :" << sizeof(Zombie) << std::endl;
-	std::cout << "Total byte of zombies element: ?????????????????????????????????" << sizeof(&zombies[0]) << std::endl;
-
-	int i = 0;
-	for (; i < num_of_zombies; i++)
+	for (int i = 0; i < num_of_zombies; i++)
 	{
-		std::cout << i + 1 << ". zombie:" << std::endl;
+		std::cout << i + 1 << ". zombie: ";
 		zombies[i].announce();
 	}
-
+	// zombies[num_of_zombies].announce();
+	// The line above will causes seg-fault,
+	// bc in num_of_zombies index, there is no any zombie.
 }

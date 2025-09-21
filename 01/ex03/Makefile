@@ -1,15 +1,16 @@
-NAME = zombie
+NAME = fight
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Zombie.cpp \
-		zombieHorde.cpp \
+SRCS = Weapon.cpp \
+		HumanA.cpp \
+		HumanB.cpp \
 		main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o ${NAME}
 
 clean:
 	rm -f $(OBJS)
