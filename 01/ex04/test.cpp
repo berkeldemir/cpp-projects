@@ -155,48 +155,9 @@ void	testAll(int (*funct)(std::string, std::string, std::string))
 
 int main (void)
 {
-	std::cout << "\e[1;96m";
-	std::cout << "- - - R E P L A C E R  T E S T E R - - -" << std::endl;
-	std::cout << "- - - - - - made by beldemir - - - - - -" << std::endl;
-	std::cout << "A: Test all. ---------------------------" << std::endl;
-	std::cout << "1: Test regular file. ------------------" << std::endl;
-	std::cout << "2: Test empty file. --------------------" << std::endl;
-	std::cout << "3: Test with non-existing file. --------" << std::endl;
-	std::cout << "4: Test with (file, \"\", \"\"). -----------" << std::endl;
-	std::cout << "5: Test with (file, \"a\", \"\"). ----------" << std::endl;
-	std::cout << "6: Test with (file, \"\", \"a\"). ----------" << std::endl;
-	std::cout << "7: Test with (custom.txt, \"a\", \"A\"). ---" << std::endl;
-	//std::cout << "6: Bu adam daha ne yapsin? -------------" << std::endl;
-	std::cout << "------------------------------ X/Q: Quit" << std::endl;
-
-	std::string	input;
 	int	(*funct)(std::string, std::string, std::string) = replacer;
-
-	while (getline(std::cin, input))
-	{
-		std::cout << "\e[0m";
-		if (input == "A")
-			testAll(funct);
-		else if (input == "1")
-			test1(funct);
-		else if (input == "2")
-			test2(funct);
-		else if (input == "3")
-			test3(funct);
-		else if (input == "4")
-			test4(funct);
-		else if (input == "5")
-			test5(funct);
-		else if (input == "6")
-			test6(funct);
-		else if (input == "7")
-			test7(funct);
-		else if (input == "Q" || input == "X")
-			break ;
-		else
-			std::cout << "Enter valid command." << std::endl;
-		std::cout << "\e[1;96m";
-	}
+	testAll(funct);
+	/*
 	std::remove("test1");
 	std::remove("test1.replace");
 	std::remove("test2");
@@ -211,4 +172,5 @@ int main (void)
 	std::remove("test6.replace");
 	std::remove("test7");
 	std::remove("test7.replace");
+	*/
 }

@@ -24,7 +24,13 @@ $(TESTNAME): $(TESTOBJS)
 	@./$(TESTNAME)
 	@rm -f $(TESTOBJS) $(TESTNAME)
 
-rmfiles:
+rmtestfiles:
+	rm -f *test1
+	rm -f *test2
+	rm -f *test3
+	rm -f *test4
+	rm -f *test5
+	rm -f *test6
 	rm -f *.replace
 
 clean:

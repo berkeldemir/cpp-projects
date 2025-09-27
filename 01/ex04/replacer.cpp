@@ -34,7 +34,6 @@ int	replacer(std::string filename, std::string s1, std::string s2)
 
 	if (s1.length() > 0 && s1.compare(s2) != 0)
 	{
-		std::cout << s1.length();
 		i = foundIndex(&content[0], s1);
 		while (i > 0)
 		{
