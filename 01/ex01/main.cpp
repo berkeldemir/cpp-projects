@@ -26,4 +26,5 @@ int main(void)
 	// zombies[num_of_zombies].announce();
 	// The line above will causes seg-fault,
 	// bc in num_of_zombies index, there is no any zombie.
+	delete[] zombies;
 }

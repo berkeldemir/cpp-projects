@@ -32,7 +32,6 @@ int main(void)
 		jim.attack();
 	}*/
 
-
 	std::cout << "----- Welcome to the Ben 10 Omniverse -----" << std::endl;
 
 	Weapon	omnitrix("Ben 10");

@@ -15,12 +15,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(OBJS) -o $(NAME)
-	@echo "Usage: ./replacer <file_name> <str_to_replace> <str_to_replace_with>"
+	@echo "Usage: './replacer <file_name> <str_to_replace> <str_to_replace_with>'"
 
 test: $(TESTNAME)
 	
 $(TESTNAME): $(TESTOBJS)
 	@$(CXX) $(TESTOBJS) -o $(TESTNAME)
+	@echo "Usage: './tests' | NOTE: Use 'make rmtestfiles' to clean when you are done."
 
 rmtestfiles:
 	rm -f *test1
