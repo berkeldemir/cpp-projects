@@ -14,7 +14,7 @@ TESTOBJS = $(TESTSRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "Usage: './replacer <file_name> <str_to_replace> <str_to_replace_with>'"
 
 test: $(TESTNAME)

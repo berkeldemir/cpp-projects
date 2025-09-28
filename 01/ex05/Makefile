@@ -9,7 +9,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "Usage: \"./harl\" OR \"./harl <DEBUG/INFO/WARNING/ERROR>\""
 
 clean:
