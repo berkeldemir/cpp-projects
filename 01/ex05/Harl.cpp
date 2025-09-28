@@ -45,14 +45,15 @@ void	Harl::complain(std::string str)
 {
 	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void	(Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	for (int i = 0; i < sizeof(levels);i++)
+	for (int i = 0; i < 4;i++)
 	{
 		if (levels[i] == str)
 		{
-			(this->*functions[i])();
+			for (; i < 4; i++)
+				(this->*functions[i])();
 			return ;
 		}
 	}
-	std::cout << "";
+	std::cout << "[LEVEL IS NOT VALID]" << std::endl;
 	return ;
 }

@@ -21,8 +21,6 @@ test: $(TESTNAME)
 	
 $(TESTNAME): $(TESTOBJS)
 	@$(CXX) $(TESTOBJS) -o $(TESTNAME)
-	@./$(TESTNAME)
-	@rm -f $(TESTOBJS) $(TESTNAME)
 
 rmtestfiles:
 	rm -f *test1
@@ -32,6 +30,8 @@ rmtestfiles:
 	rm -f *test5
 	rm -f *test6
 	rm -f *.replace
+	rm -f $(TESTNAME)
+	rm -f $(TESTOBJS)
 
 clean:
 	rm -f $(OBJS)

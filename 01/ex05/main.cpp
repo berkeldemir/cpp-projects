@@ -29,5 +29,5 @@ int main(int ac, char **av)
 		std::cout << "ERROR:\n";
 		harl.complain("ERROR");
 	}
-	return 1;
+	return 0;
 }
