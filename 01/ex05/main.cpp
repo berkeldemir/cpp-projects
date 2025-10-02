@@ -20,13 +20,13 @@ int main(int ac, char **av)
 		harl.complain(av[1]);
 	else if (ac == 1)
 	{
-		std::cout << "DEBUG:\n";
+		std::cout << "\nDEBUG:\n";
 		harl.complain("DEBUG");
-		std::cout << "INFO:\n";
+		std::cout << "\nINFO:\n";
 		harl.complain("INFO");
-		std::cout << "WARNING:\n";
+		std::cout << "\nWARNING:\n";
 		harl.complain("WARNING");
-		std::cout << "ERROR:\n";
+		std::cout << "\nERROR:\n";
 		harl.complain("ERROR");
 	}
 	return 0;
