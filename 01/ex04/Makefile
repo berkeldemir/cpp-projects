@@ -20,7 +20,7 @@ $(NAME): $(OBJS)
 test: $(TESTNAME)
 	
 $(TESTNAME): $(TESTOBJS)
-	@$(CXX) $(TESTOBJS) -o $(TESTNAME)
+	@$(CXX) $(CXXFLAGS) $(TESTOBJS) -o $(TESTNAME)
 	@echo "Usage: './tests' | NOTE: Use 'make rmtestfiles' to clean when you are done."
 
 rmtestfiles:
