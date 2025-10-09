@@ -39,10 +39,9 @@ int main(void)
 	Weapon	malwareWeapon("Energy Blast");
 		
 	HumanB	ben10("Ben Tennyson");
-	HumanB	rook("Rook Blonko");
+	HumanA	rook("Rook Blonko", protoTool);
 	HumanB	malware("Malware");
 
-	rook.setWeapon(protoTool);
 	malware.setWeapon(malwareWeapon);
 
 	malware.attack();
@@ -67,7 +66,7 @@ int main(void)
 
 	std::cout << "Rook Blonko finished the fight thanks to " << protoTool.getType() << "!" << std::endl;
 
-	std::cout << "Good guys always wins!" << std::endl;
+	std::cout << "GG!" << std::endl;
 
 	return 0;
 }
