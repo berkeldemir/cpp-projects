@@ -25,17 +25,15 @@ int	replacer(std::string filename, std::string s1, std::string s2)
 
 	putInto.open((filename + ".replace").c_str());
 	if (!putInto)
-		return (readFrom.close(), throwError(filename + ".replace couldn't be created!"));
+		return (readFrom.close(), throwError(filename + ".replace couldn't be created/opened!"));
 
 	for (std::string s; std::getline(readFrom, s) && ++i;)
 		content += s + "\n";
-	if (i > 0)
-		content.erase(content.length() - 1, content.length()); // content.pop_back() was not available for std++98
 
 	if (s1.length() > 0 && s1.compare(s2) != 0)
 	{
 		i = foundIndex(&content[0], s1);
-		while (i > 0)
+		while (i >= 0)
 		{
 			content.erase(i, s1.length());
 			content.insert(i, s2);
@@ -43,7 +41,7 @@ int	replacer(std::string filename, std::string s1, std::string s2)
 			if ((unsigned long)i < content.size())
 			{
 				j = foundIndex(&content[i], s1);
-				if (j > 0)
+				if (j >= 0)
 					i += j;
 				else 
 					break ;
