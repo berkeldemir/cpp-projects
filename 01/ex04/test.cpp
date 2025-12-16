@@ -90,7 +90,7 @@ void	test5(int (*funct)(std::string, std::string, std::string))
 	testFile.open(fileName.c_str());
 	if (!testFile)
 	{
-		throwError("Error encountered while testing the 4th.");
+		throwError("Error encountered while testing the 5th.");
 		return ;
 	}
 	testFile << "wake me up before you go-go" << std::endl;
@@ -112,7 +112,7 @@ void	test6(int (*funct)(std::string, std::string, std::string))
 	testFile.open(fileName.c_str());
 	if (!testFile)
 	{
-		throwError("Error encountered while testing the 4th.");
+		throwError("Error encountered while testing the 6th.");
 		return ;
 	}
 	testFile << "wake me up before you go-go" << std::endl;

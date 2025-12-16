@@ -19,25 +19,25 @@ Harl::Harl(void)
 
 void	Harl::debug(void)
 {
-	std::cout << "[DEBUG] Reality stepped through the breakpoints I never set. Turns out, the bug was in my expectations." << std::endl;
+	std::cout << "[ DEBUG ] Reality stepped through the breakpoints I never set. Turns out, the bug was in my expectations." << std::endl;
 	return ;
 }
 
 void	Harl::info(void)
 {
-	std::cout << "[INFO] You are now connected to everything - but you still searching for something." << std::endl;
+	std::cout << "[ INFO ] You are now connected to everything - but you still searching for something." << std::endl;
 	return ;
 }
 
 void	Harl::warning(void)
 {
-	std::cout << "[WARNING] Proceeding may overwrite who you used to be." << std::endl;
+	std::cout << "[ WARNING ] Proceeding may overwrite who you used to be." << std::endl;
 	return ;
 }
 
 void	Harl::error(void)
 {
-	std::cout << "[ERROR] Memory overflow! Too many thoughts... There is no left enough (S)PeACE." << std::endl;
+	std::cout << "[ ERROR ] Memory overflow! Too many thoughts... There is no left enough (S)PeACE." << std::endl;
 	return ;
 }
 
