@@ -75,7 +75,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	if (this->energyPts <= 0)
 		std::cout << INFO << this->name << "\tis out of energy to repair itself.";
 	else if (this->hitPts <= 0)
-		std::cout << INFO << this->name << "\tis a dead man, he can't be repaired...";
+		std::cout << INFO << this->name << "\tis a dead man, it can't be repaired...";
 	else
 	{
 		this->energyPts--;
