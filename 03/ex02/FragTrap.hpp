@@ -1,5 +1,6 @@
-#pragma once
-#include "./ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+# include "./ClapTrap.hpp"
 
 #define FRAG "\033[0;35m[ FRAG  ] "
 
@@ -11,5 +12,7 @@ class	FragTrap : public ClapTrap
 		FragTrap(const FragTrap& ref);
 		FragTrap&	operator=(const FragTrap& ref);
 		~FragTrap();
-        void    highFivesGuys(void);
+		void	highFivesGuys(void);
 };
+
+#endif

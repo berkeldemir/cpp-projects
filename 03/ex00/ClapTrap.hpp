@@ -1,7 +1,9 @@
-#include <iostream>
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
+# include <iostream>
 
-#define DEBUG "\033[0;32m[ DEBUG ] "
-#define INFO "\033[0;36m[ INFO  ] "
+# define DEBUG "\033[0;32m[ DEBUG ] "
+# define INFO "\033[0;36m[ INFO  ] "
 
 class ClapTrap
 {
@@ -23,3 +25,5 @@ class ClapTrap
 		unsigned int	getHitPts();
 		unsigned int	getAttackDmg();
 };
+
+#endif
