@@ -50,7 +50,7 @@ Fixed::~Fixed()
 
 int	Fixed::getRawBits(void)	const
 {
-	return(this->fixedPoint);
+	return (this->fixedPoint);
 }
 
 void	Fixed::setRawBits(int const raw)
