@@ -6,7 +6,7 @@ int	main(void)
 {
 	Animal *poppy = new Cat();
 	Animal *buddy = new Dog();
-	// Animal	*bird = new Bird(); // ERROR
+	// Animal	*bird = new Animal(); // ERROR
 
 	poppy->makeSound();
 
