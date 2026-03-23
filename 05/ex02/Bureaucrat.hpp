@@ -2,6 +2,7 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "AForm.hpp"
 # define NOBODY "<nobody>: "
 # define FAIL "[ FAIL ] "
 
@@ -35,6 +36,9 @@ class	Bureaucrat
 
 		void	increaseGrade(void);
 		void	decreaseGrade(void);
+
+		void	signForm(AForm& form);
+		void	executeForm(AForm& form);
 };
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj);
