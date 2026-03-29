@@ -22,6 +22,11 @@ class	Intern
 
 		Intern&	operator=(const Intern& ref);
 
+		class	FormNotFound : public std::exception
+		{
+			public:
+				virtual const char*	what() const throw();
+		};
 
 		AForm*	makeForm(std::string formType, std::string formTarget);
 };

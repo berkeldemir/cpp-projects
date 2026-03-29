@@ -11,7 +11,7 @@ int main(void)
         Bureaucrat  elon("Elon", 4);
         Bureaucrat  berk("Berk", 44);
         
-        std::cout << "\n--- INTERN TESTS ---" << std::endl;
+        std::cout << "--- INTERN TESTS ---" << std::endl;
 
         Intern  intern;
         AForm* rrf;
@@ -30,9 +30,9 @@ int main(void)
         {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-
+        ////////////////////////////////
         std::cout << "---" << std::endl;
-
+        ////////////////////////////////
         try
         {
             rrf = intern.makeForm("shrubbery creation", "Garden");
@@ -47,9 +47,27 @@ int main(void)
         {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-
+        ////////////////////////////////
         std::cout << "---" << std::endl;
-
+        ////////////////////////////////
+        try
+        {
+            rrf = intern.makeForm("presidential pardon", "POTUS");
+            if (rrf)
+            {
+                berk.signForm(*rrf);
+                elon.signForm(*rrf);
+                elon.executeForm(*rrf);
+                delete rrf;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        ////////////////////////////////
+        std::cout << "---" << std::endl;
+        ////////////////////////////////
         try
         {
             rrf = intern.makeForm("unknown form", "Target");
@@ -58,7 +76,7 @@ int main(void)
         }
         catch (std::exception& e)
         {
-            std::cout << "Caught expected error: " << e.what() << std::endl;
+            std::cout << "Exception: " << e.what() << std::endl;
         }
     }
     catch (std::exception& exc)

@@ -26,6 +26,11 @@ AForm*	Intern::newPresidentialForm(const std::string& target)
 	return (new PresidentialPardonForm(target));
 }
 
+const char*	Intern::FormNotFound::what(void) const throw()
+{
+	return ("form does not exist.");
+}
+
 AForm*	Intern::makeForm(std::string formType, std::string formTarget)
 {
 	std::string	formTypes[] = {
@@ -49,7 +54,6 @@ AForm*	Intern::makeForm(std::string formType, std::string formTarget)
 		}
 	}
 
-	std::cout << "Error: Intern cannot create " << formType;
-	std::cout << ". Because it doesn't exist." << std::endl;
+	throw Intern::FormNotFound();
 	return (NULL);
 }
