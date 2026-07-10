@@ -10,7 +10,6 @@ ScalarConverter::~ScalarConverter() {}
 
 bool	isThereWhiteSpace(const std::string& s)
 {
-	// ! there might be a mistake
 	for (size_t i = 0; i < s.size(); i++)
 		if (static_cast<unsigned char>(s[i]) == ' ')
 			return true;
@@ -34,56 +33,47 @@ void	putChar(const t_input& input)
 {
 	std::cout << "char: ";
 
+	int	charValue = 0;
+
 	if (input._type == ITYPE_CHR)
-	{
-		if (input._chr < 32 || input._chr >= 127)
-			std::cout << NON_DISPLAYABLE;
-		else
-			std::cout << "\'" << input._chr << "\'";;
-	}
+		charValue = static_cast<int>(input._chr);
 	else if (input._type == ITYPE_INT)
 	{
 		if (input._int < 0 || input._int > 127)
-			std::cout << IMPOSSIBLE;
-		else
 		{
-			char	c = static_cast<char>(input._int);
-			if (c < 32 || c >= 127)
-				std::cout << NON_DISPLAYABLE;
-			else
-				std::cout << "\'" << c << "\'";
+			std::cout << IMPOSSIBLE << std::endl;
+			return;
 		}
+		charValue = input._int;
 	}
 	else if (input._type == ITYPE_FLT)
 	{
-		if (std::isnan(input._flt) || std::isinf(input._flt) ||
-			input._flt < 0 || input._flt > 127)
-			std::cout << IMPOSSIBLE;
-		else
+		if (input._flt < 0.0f || input._flt > 127.0f)
 		{
-			char	c = static_cast<char>(input._flt);
-			if (c < 32 || c >= 127)
-				std::cout << NON_DISPLAYABLE;
-			else
-				std::cout << "\'" << c << "\'";
+			std::cout << IMPOSSIBLE << std::endl;
+			return;
 		}
+		charValue = static_cast<int>(input._flt);
 	}
 	else if (input._type == ITYPE_DBL)
 	{
-		if (std::isnan(input._dbl) || std::isinf(input._dbl) ||
-			input._dbl < 0 || input._dbl > 127)
-			std::cout << IMPOSSIBLE;
-		else
+		if (input._dbl < 0.0 || input._dbl > 127.0)
 		{
-			char	c = static_cast<char>(input._dbl);
-			if (c < 32 || c >= 127)
-				std::cout << NON_DISPLAYABLE;
-			else
-				std::cout << "\'" << c << "\'";
+			std::cout << IMPOSSIBLE << std::endl;
+			return;
 		}
+		charValue = static_cast<int>(input._dbl);
 	}
 	else
-		std::cout << IMPOSSIBLE;
+	{
+		std::cout << IMPOSSIBLE << std::endl;
+		return;
+	}
+
+	if (charValue < 32 || charValue == 127)
+		std::cout << NON_DISPLAYABLE;
+	else
+		std::cout << "'" << static_cast<char>(charValue) << "'";
 
 	std::cout << std::endl;
 }
@@ -99,14 +89,16 @@ void	putInt(const t_input& input)
 		std::cout << input._int;
 	else if (input._type == ITYPE_FLT)
 	{
-		if (std::isnan(input._flt) || std::isinf(input._flt))
+		if (input._flt < static_cast<float>(std::numeric_limits<int>::min()) || 
+			input._flt > static_cast<float>(std::numeric_limits<int>::max()))
 			std::cout << IMPOSSIBLE;
 		else
 			std::cout << static_cast<int>(input._flt);
 	}
 	else if (input._type == ITYPE_DBL)
 	{
-		if (std::isnan(input._dbl) || std::isinf(input._dbl))
+		if (input._dbl < static_cast<double>(std::numeric_limits<int>::min()) || 
+			input._dbl > static_cast<double>(std::numeric_limits<int>::max()))
 			std::cout << IMPOSSIBLE;
 		else
 			std::cout << static_cast<int>(input._dbl);
@@ -204,6 +196,8 @@ t_input	convertInputToItsOwnType(const std::string& s)
 		if (it == s.size() || (it == s.size() - 1 && s[0] == '-'))
 		{
 			stream >> input._int;
+			if (stream.fail())
+				return input;
 			input._type = ITYPE_INT;
 			return input;
 		}
@@ -214,6 +208,8 @@ t_input	convertInputToItsOwnType(const std::string& s)
 			else if ((it == s.size() - 1) || (it == s.size() - 2 && s[0] == '-'))
 			{
 				stream >> input._dbl;
+				if (stream.fail())
+					return input;
 				input._type = ITYPE_DBL;
 				return input;
 			}
@@ -225,6 +221,8 @@ t_input	convertInputToItsOwnType(const std::string& s)
 				if ((s.rbegin())[1] == '.')
 					return input;
 				stream >> input._flt;
+				if (stream.fail())
+					return input;
 				input._type = ITYPE_FLT;
 				return input;
 			}
