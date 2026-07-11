@@ -14,12 +14,12 @@ void	printPrettyStr(std::string str)
 int	main(void)
 {
 	int	intArraySize = 3;
-	int	intArray[intArraySize] = {7, 88, 999};
+	int	intArray[3] = {7, 88, 999};
 
 	::iter(intArray, intArraySize, printPrettyInt);
 
 	const long long	strArraySize = 7;
-	std::string		strArray[strArraySize] = {"b", "be", "bel", "beld", "beldem", "beldemi", "beldemir"};
+	std::string		strArray[7] = {"b", "be", "bel", "beld", "beldem", "beldemi", "beldemir"};
 	::iter(strArray, strArraySize, printPrettyStr);
 
 	::iter(intArray, intArraySize, ::templatedFunction<int>);
