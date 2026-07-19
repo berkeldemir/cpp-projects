@@ -10,7 +10,6 @@ int	main(void)
 
 	int	size = 5;
 	int	val = 1000000;
-	vec.reserve(size);
 	for (int i = 0; i < size; i++)
 	{
 		vec.push_back(val);
