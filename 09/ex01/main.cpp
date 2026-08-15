@@ -5,7 +5,7 @@ int	main(int ac, char** av)
 {
 	if (ac != 2)
 	{
-		std::cout << "Error" << std::endl;
+		std::cerr << "Error" << std::endl;
 		return 1;
 	}
 
@@ -15,7 +15,7 @@ int	main(int ac, char** av)
 		int		answer = sophie_kaczynsky.getAnswer();
 		std::cout << answer << std::endl;
 	}
-	catch (std::exception &e) { std::cout << e.what() << std::endl; }
+	catch (std::exception &e) { std::cerr << e.what() << std::endl; }
 }
 
 // Signature: Sophie Kaczynsky :)

@@ -3,22 +3,28 @@
 
 # include <iostream>
 # include <vector>
+# include <deque>
+
+struct	WinLosPair
+{
+	unsigned int	win;
+	unsigned int	los;
+	bool			stray;
+};
 
 class	PmergeMe
 {
 	private:
-		std::vector< std::vector<unsigned int> >	nums;
-		unsigned int	comparision_counter;
+		std::deque<WinLosPair>		createWinLosPairs(std::deque<unsigned int> &nums);
+		std::deque<unsigned int>	createChainWithWinPairMembers(std::deque<WinLosPair>	pairs);
+		void						orderPairsAccordingToWin(std::deque<WinLosPair> &pairs, std::deque<unsigned int> &wins);
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe& r);
 		PmergeMe	&operator=(const PmergeMe &r);
 		~PmergeMe();
 
-		void	giveNums(std::vector<unsigned int> _nums);
-		void	splitAllTwo(void);
-		void	swap(unsigned int parent, unsigned int i1, unsigned int i2);
-		void	sort(void);
+		void	sort(std::deque<unsigned int> &nums);
 };
 
 #endif

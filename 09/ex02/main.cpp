@@ -25,7 +25,7 @@ int	main(int ac, char** av)
 		return (1);
 	}
 
-	std::vector<unsigned int>	numbers;
+	std::deque<unsigned int>	numbers;
 	
 	for	(int i = 1; i < ac; i++)
 	{
@@ -36,8 +36,8 @@ int	main(int ac, char** av)
 	/*for (unsigned int i = 0; i < numbers.size(); i++)
 		std::cout << i << ": " << numbers[i] << std::endl;
 	*/
-	PmergeMe	myList;
 
-	myList.giveNums(numbers);
-	myList.sort();
+	PmergeMe	merge;
+
+	merge.sort(numbers);
 }

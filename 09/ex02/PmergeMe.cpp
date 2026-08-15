@@ -2,14 +2,11 @@
 
 PmergeMe::PmergeMe() { }
 
-PmergeMe::PmergeMe(const PmergeMe &r) { nums = r.nums; }
+PmergeMe::PmergeMe(const PmergeMe &r) { (void)r; }
 
 PmergeMe	&PmergeMe::operator=(const PmergeMe &r)
 {
-	if (this != &r)
-	{
-		this->nums = r.nums;
-	}
+	(void)r;
 	return (*this);
 }
 
@@ -17,47 +14,100 @@ PmergeMe::~PmergeMe() { }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void	PmergeMe::giveNums(std::vector<unsigned int> _nums)
+std::deque<WinLosPair>	PmergeMe::createWinLosPairs(std::deque<unsigned int> &nums)
 {
-	std::vector<unsigned int>	vec;
-	for (unsigned int i = 0; i < _nums.size(); i++)
-		vec.push_back(_nums[i]);
-	nums.push_back(vec);
-}
+	std::deque<WinLosPair>	pairs;
 
-void	PmergeMe::splitAllTwo(void)
-{
-	for (unsigned int i = 2; i < nums[0].size(); i += 2)
+	for (size_t i = 0; i < nums.size(); i += 2)
 	{
-		std::vector<unsigned int>	vec;
-		vec.push_back(nums[0][i]);
-		if (i+1 < nums[0].size())
-			vec.push_back(nums[0][i + 1]);
-		nums.push_back(vec);
+		WinLosPair	pair;
+		if (i + 1 < nums.size())
+		{
+			pair.stray = false;
+			if (nums[i] < nums[i+1])
+			{
+				pair.win = nums[i+1];
+				pair.los = nums[i];
+			}
+			else
+			{
+				pair.win = nums[i];
+				pair.los = nums[i+1];
+			}
+		}
+		else
+		{
+			pair.stray = true;
+			pair.los = nums[i];
+			pair.win = 0;
+		}
+		pairs.push_back(pair);
 	}
-	for (unsigned int i = nums[0].size() - 1; i >= 2; i--)
-		nums[0].pop_back();
+
+	return pairs;
 }
 
-void	PmergeMe::swap(unsigned int parent, unsigned int i1, unsigned int i2)
+std::deque<unsigned int>	PmergeMe::createChainWithWinPairMembers(std::deque<WinLosPair>	pairs)
 {
-	unsigned int	tmp_i1 = nums[parent][i1];
-	nums[parent][i1] = nums[parent][i2];
-	nums[parent][i2] = tmp_i1;
+	std::deque<unsigned int>	chain;
+
+	for (size_t i = 0; i < pairs.size(); i++)
+		if (pairs[i].stray == false)
+			chain.push_back(pairs[i].win);
+	return (chain);
 }
 
-void	PmergeMe::sort(void)
+void	PmergeMe::orderPairsAccordingToWin(std::deque<WinLosPair> &pairs, std::deque<unsigned int> &wins)
 {
-	// {[9, 8, 7, 6, 5, 4, 3, 2, 1]} => {[9, 8], [7, 6], [5, 4], [3, 2], [1]}
-	splitAllTwo();
+	std::deque<WinLosPair>	ordered;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		for (size_t j = 0; j < wins.size(); j++)
+		{
+			if (pairs[i].win == wins[j])
+			{
+				ordered.push_back(pairs[i]);
+				pairs[i] = pairs.back();
+				pairs.pop_back();
+				break ;
+			}
+		}
+	}
+	pairs = ordered;
+	return ;
+}
 
-	// {[9 8], [7 6], [5 4], [3 2], [1]} => {[8, 9], [6, 7], [4, 5], [2, 3], [1]}
-	for (unsigned int i = 0; i < nums.size(); i++)
-		if (nums[i][1] && ++comparision_counter &&  nums[i][0] > nums[i][1])
-			swap(i, 0, 1);
+void	PmergeMe::sort(std::deque<unsigned int> &nums)
+{
+	std::deque<unsigned int>	mainChain = nums;
+	std::cout << "+++++\n";
+	/// I DON'T KNOW WHAT I AM DOING I GUESS
 
-	// print
-	for (unsigned int i = 0; i < nums.size(); i++)
-		for (unsigned int j = 0; j < nums[i].size(); j++)
-			std::cout << "[" << i << "][" << j << "]: " << nums[i][j] << std::endl;
+	if (nums.size() <= 1)
+		return ;
+	else if (nums.size() == 2)
+	{
+		if (nums[0] > nums[1])
+			std::swap(nums[0], nums[1]);
+		return ;
+	}
+
+	std::deque<WinLosPair>	pairs = createWinLosPairs(nums);
+	std::deque<unsigned int>	wins = createChainWithWinPairMembers(pairs);
+	sort(wins);
+	orderPairsAccordingToWin(pairs, wins);
+
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		if (pairs[i].stray == true)
+			std::cout << "#STRAY\n";
+		std::cout << "#" << i << ": " << pairs[i].win << ", " << pairs[i].los << "\n";
+	}
+
+	std::cout << "MAIN CHAIN: ";
+	for (size_t i = 0; i < mainChain.size(); i++)
+	{
+		std::cout << mainChain[i] << "->";
+	}
+	std::cout << "END\n";
 }
