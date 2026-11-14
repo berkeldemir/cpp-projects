@@ -4,13 +4,13 @@
 
 int main(int ac, char** av)
 {
-	if (ac != 2)
-		throw   std::invalid_argument("Usage: ./btc <input_file_name>");
-
-	std::string		database_filename = "data.csv";
-
 	try
 	{
+		if (ac != 2)
+			throw   std::invalid_argument("Usage: ./btc <input_file_name>");
+	
+		std::string		database_filename = "data.csv";
+
 		BitcoinExchange	app(database_filename);
 		app.giveInput(av[1]);
 	}
